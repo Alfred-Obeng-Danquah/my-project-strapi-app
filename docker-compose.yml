@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  strapi:
+    image: alfredobeng08160816/strapi-app:latest
+    container_name: strapi
+    ports:
+      - "1337:1337"
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+
+
+
+
